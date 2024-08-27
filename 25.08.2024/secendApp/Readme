@@ -1,0 +1,34 @@
+1. Run nginx container
+
+docker container run -d --name=nginx nginx:latest
+
+2. Copy index.html
+
+PS C:\Users\Dell\Desktop\Kursy\Docker\25.08.2024\secendApp> docker container cp nginx:/usr/share/nginx/html/index.html index.html
+Successfully copied 2.56kB to C:\Users\Dell\Desktop\Kursy\Docker\25.08.2024\secendApp\index.html
+
+3. Build image for new version nginx
+
+docker image build -t secendapp:latest .
+
+4. Run cainter wioth use new image after build
+
+docker container run -d -p 8080:80 --name=mysecendapp secendapp:latest
+e90d97394ca10e80bdf79aaf48aebf405f581df12623785ee5f76d6257ef41e1
+
+5. Test with use command curl
+
+curl http://localhost:8080
+
+StatusCode        : 200
+StatusDescription : OK
+Content           : <!DOCTYPE html>
+                    <html>
+                    <head>
+                    <title>Welcome to Web Page!</title>
+                    <style>
+                    html { color-scheme: light dark; }
+                    body { width: 35em; margin: 0 auto;
+                    font-family: Tahoma, Verdana, Arial, sans-serif; }
+                    </st...
+RawContent        : HTTP/1.1 200 OK

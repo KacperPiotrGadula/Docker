@@ -1,0 +1,35 @@
+The wagoodman/dive tool is an open-source utility designed for analyzing Docker images. Its primary purpose is to help optimize Docker images by providing a detailed view of the image layers and identifying potential issues such as excessive unnecessary files or inefficient image builds.
+
+Key Features of dive:
+Layer Inspection: It allows you to inspect each layer of a Docker image, enabling you to understand what exactly happens at each step of the image build process.
+
+Layer Size Analysis: Dive displays how much space each layer occupies, helping to identify layers that might be too large or contain unnecessary data.
+
+Identification of Unnecessary Files: The tool can show which files were added, modified, or removed in each layer, making it easier to identify unnecessary files.
+
+User-Friendly Interface: Dive offers an interactive terminal-based interface, making it easy to browse and analyze Docker images.
+
+How to Use dive?
+Installation: You can install dive on your local system or run it as a Docker container.
+
+Local Installation
+
+On Linux:
+sudo apt-get install dive
+
+On macOS (via Homebrew):
+brew install dive
+
+Running as a Docker Container.
+You can run dive directly as a Docker container:
+
+docker run --rm -it \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  wagoodman/dive:latest <image_name>
+
+Analyzing an Image: After installing dive, you can analyze a specific image, e.g., dive myimage:latest, which opens an interactive interface where you can inspect image layers, check file sizes, and analyze build efficiency.
+
+Example Usage:
+If you have an image named myapp:latest, you can run dive as follows:
+
+dive myapp:latest
