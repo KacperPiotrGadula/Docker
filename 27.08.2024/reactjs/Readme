@@ -1,0 +1,22 @@
+Docker Commands:
+
+-> Creation of a production image
+
+docker image build -t myreactapp:latest .  
+
+-> Running a production container where the site runs on nginx
+
+docker container run -d -p 8082:80 --name react-roduction myreactapp:latest 
+
+Docker paramiter:
+--build-env <NODE_ENV=New_value>
+
+--target <name of stage from docker file>
+
+-> Building an image with a specified stage and changing it in env from dockerfile
+
+docker image build --target development --build-arg  NODE_ENV=development --target=development -t mydevimage:latest . 
+
+ -> Displaying details about the container
+
+docker container inspect <id or name container>
