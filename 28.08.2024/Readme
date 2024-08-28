@@ -12,19 +12,32 @@
 
 3) The ADD command is used when you want to copy an archive to a container and then immediately unpack it in a specified location (this happens automatically).
 
-Translated with www.DeepL.com/Translator (free version)
-
 4) CMD vs ENTRYPOINT
 
 **ENTRYPOINT** → allows you to specify the starting point of the container, the entered command in the values are not changeable - we will not overwrite them at the time of starting the container, as it happened more than once
 
 **CMD** → allows to define the starting point of the container, in this case CMD can be overridden by pointing some other command, which we want to run on container startup instead of the one declared in Dockerfile.
 
-
-Translated with www.DeepL.com/Translator (free version)
-
 5) ARG vs ENV
 
 **ARG** → is accessible from within the image build.
 
 **ENV** → is accessible from outside the image
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+ADD hadolint
+
+We need to add the exe file from github to our environment variables
+
+1) We download the appropriate version:
+
+https://github.com/hadolint/hadolint/releases
+
+2) We add to the appropriate directory → copy the system path to this directory
+
+3) We add to an environment variable, such as PowerShell:
+
+PS C:\Users\Dell\Desktop\...> $env:Path += ';C:\Users\Dell\Desktop\Kursy\Docker\28.08.2024'
+PS C:\Users\Dell\Desktop\...> hadolint
+Please provide a Dockerfile
