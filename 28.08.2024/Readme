@@ -1,0 +1,30 @@
+1) **Copying files from GitHub**.
+
+- you should first run the docker container run command
+- then run the curl command
+    - it is not recommended to use COPY or ADD command
+
+**COPY vs ADD**.
+
+2) The COPY command is used to copy files from the host to the container.
+
+- it is used wherever possible
+
+3) The ADD command is used when you want to copy an archive to a container and then immediately unpack it in a specified location (this happens automatically).
+
+Translated with www.DeepL.com/Translator (free version)
+
+4) CMD vs ENTRYPOINT
+
+**ENTRYPOINT** → allows you to specify the starting point of the container, the entered command in the values are not changeable - we will not overwrite them at the time of starting the container, as it happened more than once
+
+**CMD** → allows to define the starting point of the container, in this case CMD can be overridden by pointing some other command, which we want to run on container startup instead of the one declared in Dockerfile.
+
+
+Translated with www.DeepL.com/Translator (free version)
+
+5) ARG vs ENV
+
+**ARG** → is accessible from within the image build.
+
+**ENV** → is accessible from outside the image
