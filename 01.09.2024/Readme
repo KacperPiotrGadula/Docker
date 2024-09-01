@@ -1,0 +1,21 @@
+Relevant information about images/containers
+
+1) One Container = one service or aplication
+
+2) SRP - Single responsibility principle
+
+3) Don't lump frontend and backend into one container. Also, don't create one common image out of them. They are supposed to be two non-dependent images with two non-dependent later working containers. Take care of their communication
+
+4) Don't put junk files in images
+
+5) I should take care of the .dockerignore, in which I should include exclusions for
+- .git
+- node_modules
+- !README*.md
+- node_modules/
+- Dockerfile
+- .dockerignore
+
+6) Dockerignore - this is nothing but a file where I exclude those resources that I don't want to be included in the later image
+
+7) We should avoid using the tag :latest
