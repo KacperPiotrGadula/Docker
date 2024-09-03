@@ -1,0 +1,26 @@
+Location in WSL2 mount folder docker
+
+root@DESKTOP-E9H427N:/mnt/wsl# ll
+total 8
+drwxrwxrwt 4 root root  100 Sep  2 09:15 ./
+drwxr-xr-x 5 root root 4096 Aug 31 15:00 ../
+drwxr-xr-x 4 root root  100 Sep  2 09:15 docker-desktop/
+drwxr-xr-x 3 root root   60 Sep  2 09:15 docker-desktop-bind-mounts/
+-rw-r--r-- 1 root root  198 Sep  2 09:15 resolv.conf
+root@DESKTOP-E9H427N:/mnt/wsl#
+
+We have two options for configuring the external resource in conterneys:
+- volumens
+- bind mount
+
+1) The first is added within the Docker ecosystem.
+2) The second is added within the host system.
+
+We have three types of Docker networks:
+- bridge
+- host
+- macvlan
+
+1) Creates an internal network to which attached containers can communicate with each other
+2) Creates a connection to the host interface, but still does not identify the container added to this network with the ip address of the external network
+3) We create a connection to the host interface as in the case of the host, but in this type of driver we receive an ip address from an external network and we can already communicate with external devices on the network.
