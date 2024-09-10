@@ -1,0 +1,28 @@
+services:
+  wordpress: 
+    image: wordpress
+    restart: always
+    container_name: wordpress
+    ports:
+      - 9012:80
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: bombel
+      WORDPRESS_DB_PASSWORD: bombel_panda
+      WORDPRESS_DB_NAME: Wordpress
+    volumes:
+      - wd-volume:/var/lib/www
+  db: 
+    image: mysql:5.7
+    restart: always
+    container_name: db
+    environment:
+      MYSQL_DATABASE: Wordpress
+      MYSQL_USER: bombel
+      MYSQL_PASSWORD: bombel_panda
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - db-volume:/var/lib/mysql
+volumes:
+  wd-volume:
+  db-volume:
