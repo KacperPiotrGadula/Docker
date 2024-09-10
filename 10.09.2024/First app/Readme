@@ -1,0 +1,45 @@
+Docker compose sructures:
+
+version: > '3.7' - no longer used - In Docker Compose V2, which is now standard, it is not necessary to specify the schema version
+
+services:
+  servicename:
+    image:
+    container_name:
+    command:
+    ports:
+    environment:
+    volumes:
+  servicename-2:
+    image:
+    restart:
+volumes:
+networks:
+
+Section services -> this place we are decribe new containers 
+Section volumes -> this place we are wrote new volumens (after that we are create links to vlumens in containers)
+Section networks -> this place we are plan new networking - when we don't interesting this issue - docker compose will create one for us by adding containers there
+
+servicename -> name container space in docker compose
+image -> name of image to run container
+container_name -> name of new container
+command -> command which run when container up
+ports -> forward container port to outside
+environment -> only this place we can set up enviromant for containers
+volumes -> space where we add information about volume
+restart -> information what happend when system restart
+
+Docker compose vs docker CLI
+
+Docker compose
+
+automatic networking create networking for contianer
+
+Docker CLI
+
+manual create networking for contianer
+
+In docker compose yml:
+- port should be in list
+- volumes should be in list
+
