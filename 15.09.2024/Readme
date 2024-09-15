@@ -1,0 +1,9 @@
+# .env
+
+Only add env to docker-compose file
+
+Nothing this file change in DockerFile or command
+
+# Weighted values for environment variables
+
+Command > Dockerfile (set on hoscie) > .env
