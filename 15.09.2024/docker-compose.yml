@@ -1,0 +1,19 @@
+services:
+  wordpress:
+    image: wordpress
+    restart: always
+    ports:
+      - 9012:80
+    env_file: wordpress_env
+    volumes:
+      - wordpress_volume:/var/www/html
+  db:
+    image: mysql:5.7
+    restart: always
+    env_file: db_env
+    volumes:
+      - db_volume:/var/lib/mysql
+
+volumes:
+  db_volume:
+  wordpress_volume:

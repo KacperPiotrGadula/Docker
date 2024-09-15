@@ -1,0 +1,37 @@
+# .env
+
+Only add env to docker-compose file
+
+Nothing this file change in DockerFile or command
+
+# Weighted values for environment variables
+
+Command > Dockerfile (set on hoscie) > .env
+
+## Failed in docker-compose.yml:
+
+validating C:"PATH"\docker-compose.envfile.yml: (root) Additional property service is not allowed
+
+### Reason:
+
+The YAML for docker-compose has a section called service, which is not correct in this context. In docker-compose.yml, the correct section is called services, not service
+
+validating C:"PATH"\15.09.2024\docker-compose.yml: volumes must be a mapping
+
+### Reason:
+
+volumes:
+  db_volume
+  wordpress_volume
+
+Should be:
+
+volumes:
+  db_volume:
+  wordpress_volume:
+
+## Use docker-compose file
+
+docker compose -f .\docker-compose.envfile.yml down - delete containers created via docker-compose.yml file
+
+docker compose -f .\docker-compose.envfile.yml up -g -> create 2 containers in new virtual deocker networking
