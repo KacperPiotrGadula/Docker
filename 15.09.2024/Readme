@@ -63,4 +63,4 @@ The option I see is to remove all docker-compose configuration with use flag -v
 docker compose -f .\docker-compose.yml down -v
 
 # .env 
-- only value from file .env put in to variable in docker-compose file. Nothing more
+- only value from file .env put in to variable in docker-compose file. Nothing more. No add new variable in to inside container. We should first inicialisation name of variable in dockerc-compose or in command line than use .env value for variable
