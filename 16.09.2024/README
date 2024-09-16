@@ -29,4 +29,4 @@ docker-compose -p <project name> down -v
 E.g.
 
 docker compose -p test -d
-docker-compose -p test down -v
+docker compose -p test down -v
