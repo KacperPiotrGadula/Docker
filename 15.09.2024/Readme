@@ -36,7 +36,7 @@ docker compose -f .\docker-compose.envfile.yml down - delete containers created 
 
 docker compose -f .\docker-compose.envfile.yml up -g -> create 2 containers in new virtual deocker networking
 
-#Diagnostic docker container working:
+# Diagnostic docker container working:
 
 - docker container log <container_name>
 - docker container exec -it <container name> mysql -u <db_user> -p
@@ -44,11 +44,11 @@ docker compose -f .\docker-compose.envfile.yml up -g -> create 2 containers in n
   - ping <db_container_name>
   - nc -zv <db_container_name> <db_port>
 
-#Update container
+# Update container
 
 apt update && apt install -y iputils-ping & apt install -y netcat-openbsd
 
-#Error
+# Error
 
 docker compose -f .\docker-compose.yml down
 
@@ -61,3 +61,6 @@ I noticed that when mapping the volume where the container was standing to the n
 The option I see is to remove all docker-compose configuration with use flag -v
 
 docker compose -f .\docker-compose.yml down -v
+
+# .env 
+- only value from file .env put in to variable in docker-compose file. Nothing more
