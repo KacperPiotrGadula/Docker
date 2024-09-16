@@ -1,0 +1,7 @@
+#Use marge docker-compose.yml file
+
+Main -> docker-compose.yml
+
+Dev -> docker-compose.dev.yml
+
+docker compose -f .\docker-compose.yml -f .\docker-compose.dev.yml down -v

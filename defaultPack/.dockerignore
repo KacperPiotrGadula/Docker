@@ -11,3 +11,6 @@ node_modules/
 
 Dockerfile
 .dockerignore
+
+#Ignore remote value from .env file for docker-compose configuration
+.env

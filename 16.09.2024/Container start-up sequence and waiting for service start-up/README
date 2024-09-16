@@ -1,0 +1,17 @@
+#Wait for db full up
+
+INPROGRESS <PATH> docker compose up -d
+[+] Running 4/5
+ ✔ Network containerstart-upsequenceandwaitingforservicestart-up_default            Created                                                                                                          0.1s 
+ ✔ Volume "containerstart-upsequenceandwaitingforservicestart-up_db_volume"         Created                                                                                                          0.0s 
+ ✔ Volume "containerstart-upsequenceandwaitingforservicestart-up_wordpress_volume"  Created                                                                                                          0.0s 
+ - Container containerstart-upsequenceandwaitingforservicestart-up-db-1             Waiting                                                                                                          8.9s 
+ ✔ Container containerstart-upsequenceandwaitingforservicestart-up-wordpress-1      Created                                                                                                          0.2s
+
+FINISH <PATH> docker compose up -d
+[+] Running 5/5
+ ✔ Network containerstart-upsequenceandwaitingforservicestart-up_default            Created                                                                                                          0.1s 
+ ✔ Volume "containerstart-upsequenceandwaitingforservicestart-up_db_volume"         Created                                                                                                          0.0s 
+ ✔ Volume "containerstart-upsequenceandwaitingforservicestart-up_wordpress_volume"  Created                                                                                                          0.0s 
+ ✔ Container containerstart-upsequenceandwaitingforservicestart-up-db-1             Healthy                                                                                                         16.4s 
+ ✔ Container containerstart-upsequenceandwaitingforservicestart-up-wordpress-1      Started 

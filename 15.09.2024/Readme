@@ -35,3 +35,35 @@ volumes:
 docker compose -f .\docker-compose.envfile.yml down - delete containers created via docker-compose.yml file
 
 docker compose -f .\docker-compose.envfile.yml up -g -> create 2 containers in new virtual deocker networking
+
+# Diagnostic docker container working:
+
+- docker container log <container_name>
+- docker container exec -it <container name> mysql -u <db_user> -p
+- docker container exec -it <container name> bash
+  - ping <db_container_name>
+  - nc -zv <db_container_name> <db_port>
+
+# Update container
+
+apt update && apt install -y iputils-ping & apt install -y netcat-openbsd
+
+# Error
+
+docker compose -f .\docker-compose.yml down
+
+I applied the command:
+
+This allowed me to delete containers and networking, but did not delete the volume
+
+I noticed that when mapping the volume where the container was standing to the new mysql, there are challenges with the mysql configuration. This causes conflicts to connect to the database.
+
+The option I see is to remove all docker-compose configuration with use flag -v
+
+docker compose -f .\docker-compose.yml down -v
+
+# .env 
+- only value from file .env put in to variable in docker-compose file. Nothing more. No add new variable in to inside container. We should first inicialisation name of variable in dockerc-compose or in command line than use .env value for variable
+
+#docker compose configuration
+- show us how environment looks like when value for variable will add from .env

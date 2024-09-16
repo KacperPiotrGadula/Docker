@@ -1,0 +1,32 @@
+**Using the environment variables defined on the host on which docker is running, you can define several environments with a single docker compose**.
+
+To achieve this you need to:
+
+- define a port with what variable
+
+``docker
+ports:
+      - ${WORDPRESS_PORT}:80
+```
+
+in the commandline of the host on which docker is running put in the environment variables:
+
+- Windows Powershell: `$Env:WP_PORT=‘9091’`
+- Linux: `export WP_PORT=9091`.
+
+Define which project/stage for which project we want to run:
+
+- dev
+- test
+- prod
+
+then enter the docker compose **-p** parameter in the project start command
+
+docker compose -f <file if not default> -p <project name> -d
+
+docker-compose -p <project name> down -v
+
+E.g.
+
+docker compose -p test -d
+docker compose -p test down -v
