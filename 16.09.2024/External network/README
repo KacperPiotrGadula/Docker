@@ -1,0 +1,12 @@
+# 1) Add new bridge network
+
+docker network create -d bridge myexternal-bridge-network
+
+# 2) Add new network in docker-compose file
+
+In bootom of your docker-compose file add section
+
+networks:
+  default:
+    external: true
+    name: myexternal-bridge-network (name of your new network)

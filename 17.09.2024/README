@@ -1,0 +1,91 @@
+# Install node js
+
+https://nodejs.org/en/download/prebuilt-installer
+
+# Check node.js verrsion (enter command in powershell)
+
+-> node --version
+
+# Install tool to transfer docker conteiner run commend to docker-compose file (enter command in powershell)
+
+-> npm install composerize -g
+
+PS <PATH> composerize docker container run -p 80:80 --restart always --name composerize-nginx nginx:1.17
+composerize : File <PATH> cannot be loaded because running scripts is disabled on this system. For more information, see about_Execution_Policies at https:/ 
+go.microsoft.com/fwlink/?LinkID=135170.
+At line:1 char:1
++ composerize docker container run -p 80:80 --restart always --name com ...
++ ~~~~~~~~~~~
+    + CategoryInfo          : SecurityError: (:) [], PSSecurityException
+    + FullyQualifiedErrorId : UnauthorizedAccess
+
+
+# We need move some steps to configured allow use script in powershell
+
+This error is due to a default setting in Windows that blocks PowerShell scripts from running to protect your computer from potentially dangerous code. To resolve this issue, change the policy for running PowerShell scripts.
+
+Here's how to do it:
+
+1) Open PowerShell as an administrator:
+
+Right-click the PowerShell icon and select Run as administrator.
+
+2) Check the current execution policy:
+
+Type in PowerShell (with administrator privileges):
+
+-> Get-ExecutionPolicy
+
+If it returns Restricted, this means that running scripts is blocked.
+
+3) Change the execution policy:
+
+To temporarily allow scripts to run, type the following command:
+
+-> Set-ExecutionPolicy RemoteSigned
+
+The RemoteSigned option allows local scripts to run, but scripts downloaded from the internet must be signed.
+
+4) Confirm the policy change:
+
+After issuing the above command, PowerShell will ask for confirmation. Type Y and press Enter.
+
+4) Check the execution policy again:
+
+To ensure the change has been applied, run:
+
+-> Get-ExecutionPolicy
+
+It should return RemoteSigned.
+
+
+PS C:\Users\DevOPS\Desktop\wKontenerach\Docker\17.09.2024> composerize docker container run -p 80:80 --restart always --name composerize-nginx nginx:1.17
+name: <your project name>
+services:
+  nginx:
+    ports:
+      - 80:80
+    restart: always
+    container_name: composerize-nginx
+    image: nginx:1.17
+
+PS C:\Users\DevOPS\Desktop\wKontenerach\Docker\17.09.2024> composerize docker run -d -p 3306:3306 --name db -e MYSQL_DATABASE=exampledb -e MYSQL_USER=exampleuser -e MYSQL_PASSWORD=examplepass -e MYSQL_RANDOM_ROOT_PASSWORD=1 --network=wp --restart=always mysql:5.7
+name: <your project name>
+services:
+  mysql:
+    ports:
+      - 3306:3306
+    container_name: db
+    environment:
+      - MYSQL_DATABASE=exampledb
+      - MYSQL_USER=exampleuser
+      - MYSQL_PASSWORD=examplepass
+      - MYSQL_RANDOM_ROOT_PASSWORD=1
+    networks:
+      - wp
+    restart: always
+    image: mysql:5.7
+networks:
+  wp:
+    external: true
+    name: wp
