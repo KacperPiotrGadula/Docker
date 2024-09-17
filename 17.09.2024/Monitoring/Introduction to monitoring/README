@@ -1,0 +1,16 @@
+# Check resource usage status
+
+docker container stats -> allows you to stream live information on host resource usage by containers
+docker container stats --no-stream -> lets you stream live information on host resource usage by containers at one time
+
+# Delete all containers automatically
+docker container rm $(docker ps -aq) --force
+
+# Use composerize
+
+PS <PATH> composerize docker container run -d --name apache2 httpd
+name: <your project name>
+services:
+  httpd:
+    container_name: apache2
+    image: httpd

@@ -1,0 +1,11 @@
+services:
+  apache1:
+    container_name: apache1
+    image: httpd
+  apache2:
+    container_name: apache2
+    image: httpd
+  apache3:
+    container_name: apache3
+    image: httpd
+  
