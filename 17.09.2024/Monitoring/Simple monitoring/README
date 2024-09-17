@@ -1,0 +1,14 @@
+# Monitoring for docker compose use
+
+Code:
+
+cadvisor:
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    ports:
+    container_name: cadvisor
+    image: gcr.io/google-containers/cadvisor:latest

@@ -1,0 +1,52 @@
+services:
+  apache1:
+    container_name: apache1
+    image: httpd
+  apache2:
+    container_name: apache2
+    image: httpd
+  apache3:
+    container_name: apache3
+    image: httpd
+  stress:
+    deploy:
+      resources:
+        limits:
+          memory: 50m
+    stdin_open: true
+    tty: true
+    image: dnaprawa/stress
+  redis:
+    container_name: redis2
+    deploy:
+      resources:
+        limits:
+          memory: 30m
+    image: redis
+  ubuntu:
+    stdin_open: true
+    tty: true
+    deploy:
+      resources:
+        limits:
+          memory: 40M
+          cpus: 0.5
+    image: ubuntu
+  cadvisor:
+    depends_on:
+      - ubuntu
+      - redis
+      - stress
+      - apache1
+      - apache2
+      - apache3
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    ports:
+      - 8080:8080
+    container_name: cadvisor
+    image: gcr.io/google-containers/cadvisor:latest
