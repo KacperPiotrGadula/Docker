@@ -1,0 +1,61 @@
+# Overloading of the container by overloading the number of frames allocated to it
+RAM
+
+PS <PATH> docker run --memory 50m --rm -it  dnaprawa/stress --vm 1 --vm-bytes 1002914560 --timeout 3
+stress: info: [1] dispatching hogs: 0 cpu, 0 io, 1 vm, 0 hdd
+stress: dbug: [1] using backoff sleep of 3000us
+stress: dbug: [1] setting timeout to 3s
+stress: dbug: [1] --> hogvm worker 1 [6] forked
+stress: dbug: [6] allocating 1002914560 bytes ...
+stress: dbug: [6] touching bytes in strides of 4096 bytes ...
+stress: FAIL: [1] (416) <-- worker 6 got signal 9
+stress: WARN: [1] (418) now reaping child worker processes
+stress: FAIL: [1] (422) kill error: No such process
+stress: FAIL: [1] (452) failed run completed in 0s
+
+
+# Container start-up subject to a limit
+
+PS <PATH> docker run --memory 50m --rm -it  dnaprawa/stress --vm 1 --vm-bytes 102914560 --timeout 3
+stress: info: [1] dispatching hogs: 0 cpu, 0 io, 1 vm, 0 hdd
+stress: dbug: [1] using backoff sleep of 3000us
+stress: dbug: [1] setting timeout to 3s
+stress: dbug: [1] --> hogvm worker 1 [8] forked
+stress: dbug: [8] allocating 102914560 bytes ...
+stress: dbug: [8] touching bytes in strides of 4096 bytes ...
+stress: dbug: [8] freed 102914560 bytes
+stress: dbug: [8] allocating 102914560 bytes ...
+stress: dbug: [8] touching bytes in strides of 4096 bytes ...
+stress: dbug: [1] <-- worker 8 signalled normally
+stress: info: [1] successful run completed in 3s
+
+CPU
+
+docker run -it --cpus=".5" ubuntu /bin/bash
+
+
+#Composerize
+
+PS <PATH> composerize docker run --memory 50m --rm -it  dnaprawa/stress --vm 1 --vm-bytes 1002914560 --timeout 3
+name: <your project name>
+services:
+  stress:
+    deploy:
+      resources:
+        limits:
+          memory: 50m
+    stdin_open: true
+    tty: true
+    image: dnaprawa/stress
+    command: --vm 1 --vm-bytes 1002914560 --timeout 3
+
+
+E.g. CPU and memory (RAM)
+
+PS <PATH> docker run -it --memory 40M --cpus=".5" ubuntu /bin/bash 
+root@32b0427406c9:/#
+
+docker container inspect 32b0427406c9
+
+"Memory": 41943040
+"NanoCpus": 500000000
