@@ -30,3 +30,16 @@ sudo systemctl restart docker
 Than we can try
 
 docker container -H tcp://0.0.0.0:2375 ps
+
+## !!! NOTE !!!!
+
+Do not edit docker engine on windows, specifically on WLC 2
+
+I.e. ubuntu console on windows
+
+- if you edit it, it won't work anyway, you will only cause a conflict and docker dectop won't start up
+- it will always stop
+- once you have added the files, you must delete them
+- then restart docker desctop
+
+Translated with www.DeepL.com/Translator (free version)
