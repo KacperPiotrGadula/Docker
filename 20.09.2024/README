@@ -17,7 +17,13 @@ We need add new information in docker engine file (/etc/docker/daemon.json):
   "hosts":["unix:///var/run/docker.sock","tcp://0.0.0.0:2375"]
 }
 
-After that we shoudl restart docker
+We need one more information add in file /etc/systemd/system/docker.service.d/docker.conf:
+
+[Service]
+ExecStart=
+ExecStart=/usr/bin/dockerd
+
+After that we should restart docker
 
 sudo systemctl restart docker
 
