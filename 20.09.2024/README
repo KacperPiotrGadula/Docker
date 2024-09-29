@@ -1,0 +1,26 @@
+# Configure Docker Engine
+
+Add conection to docker via API with use TCP connection
+
+We need add new information in docker engine file (/etc/docker/daemon.json):
+
+"hosts":["unix:///var/run/docker.sock","tcp://0.0.0.0:2375"]
+
+{
+  "builder": {
+    "gc": {
+      "defaultKeepStorage": "20GB",
+      "enabled": true
+    }
+  },
+  "experimental": false,
+  "hosts":["unix:///var/run/docker.sock","tcp://0.0.0.0:2375"]
+}
+
+After that we shoudl restart docker
+
+sudo systemctl restart docker
+
+Than we can try
+
+docker container -H tcp://0.0.0.0:2375 ps
