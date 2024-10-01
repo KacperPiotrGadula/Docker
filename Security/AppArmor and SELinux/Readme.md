@@ -13,3 +13,9 @@ apparmor_parser wparmor -> loading the created profile from the wparmor file
 docker-compose -f docker-compose.apparmor.yml up -d
 
 - check if you can install some exted for Wordpress
+
+AppArmor
+- for Debian and Ubuntu
+
+SELinux
+- for RHEL (Centros, RedHat)
