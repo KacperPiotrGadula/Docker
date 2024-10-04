@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  registry:
+    image: registry:2
+    container_name: myregistry
+    environment:
+      - REGISTRY_AUTH=htpasswd
+      - REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd
+      - REGISTRY_AUTH_HTPASSWD_REALM=realm
+    ports:
+      - "5000:5000"
+    volumes:
+      - /var/myregistry/data:/var/lib/registry
+      - /var/myregistry/auth:/auth
+    restart: always
+
+  registry-frontend:
+    image: konradkleine/docker-registry-frontend:v2
+    container_name: registry-frontend
+    environment:
+      - ENV_DOCKER_REGISTRY_HOST=myregistry
+      - ENV_DOCKER_REGISTRY_PORT=5000
+      - ENV_DOCKER_REGISTRY_USE_SSL=0
+    ports:
+      - "8080:80"
+    depends_on:
+      - registry
+    restart: always
+
+volumes:
+  registry_data:
+  registry_auth:

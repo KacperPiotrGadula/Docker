@@ -17,3 +17,7 @@ docker run -d \
   -e REGISTRY_STORAGE_AZURE_CONTAINER=<container_name_here> \
   -p 5043:443 \
   registry:2
+
+# Run Docker Registry UI
+
+docker container run -d -e ENV_DOCKER_REGISTRY_HOST=localhost -e ENV_DOCKER_REGISTRY_PORT=5000 -e ENV_DOCKER_REGISTRY_USE_SSL=1 -p 8080:80 --name registry-ui konradkleine/docker-registry-frontend:v2
